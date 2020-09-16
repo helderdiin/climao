@@ -21,6 +21,6 @@
     "react/jsx-filename-extension": [1, {
       "extensions": [".js", ".jsx"]
     }],
-    "max-len": [1, 120]
+    "max-len": [1, 150]
   }
 }
