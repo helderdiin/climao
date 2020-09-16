@@ -42,4 +42,3 @@ export const Day = styled.div`
     font-weight: 700
   }
 `;
-
