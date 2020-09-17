@@ -1,6 +1,17 @@
 language: node_js
+node_js:
+  - 10
+install:
+  - yarn install
 script:
   - yarn test
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_KEY
+  app: climao-test-env
+  on:
+    repo: helderdiin/climao
 branches:
   only:
     - develop
