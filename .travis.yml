@@ -10,6 +10,9 @@ deploy:
   app: climao-test-env
   on:
     repo: helderdiin/climao
+    branches:
+      only:
+        - develop
 branches:
   only:
     - develop
