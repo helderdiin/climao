@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
 
 import MinMaxTemp from '../../styles/MinMaxTemp';
+import { getWeekday } from '../../services/dateTimeFormat';
+
 import {
   Container, City, Temperature, Details, Day,
 } from './styles';
@@ -25,7 +26,7 @@ function CurrentWeather() {
       </Temperature>
       <Details>
         <Day>
-          <span>{moment().format('dddd')}</span>
+          <span>{getWeekday(Date.now())}</span>
           <span>HOJE</span>
         </Day>
         <MinMaxTemp>

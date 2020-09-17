@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
-import moment from 'moment';
 
 import './global.css';
 
 import { Creators as WeatherActions } from './store/ducks/weather';
+import { getHour } from './services/dateTimeFormat';
 
 import { weather } from './services/api';
 
@@ -38,7 +38,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const currentHour = +moment().format('HH');
+    const currentHour = getHour(Date.now());
 
     if (currentHour > 6 && currentHour < 18) {
       setBackgroundImage(AfternoonImg);

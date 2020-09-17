@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { getWeekday, getHour, getTime } from '../../services/dateTimeFormat';
 
 export const Types = {
   SET_TODAY_DATA: 'weather/SET_TODAY_DATA',
@@ -16,7 +16,7 @@ const INITIAL_STATE = {
     sunrise: 0,
     sunset: 0,
     humidity: 0,
-    wind_speed: 0,
+    windSpeed: 0,
     feelsLike: 0,
     pressure: 0,
     visibility: 0,
@@ -57,8 +57,8 @@ export const Creators = {
       tempMin: Math.round(data.daily[0] && data.daily[0].temp.min),
       tempMax: Math.round(data.daily[0] && data.daily[0].temp.max),
       details: {
-        sunrise: moment(data.current.sunrise * 1000).format('HH:MM'),
-        sunset: moment(data.current.sunset * 1000).format('HH:MM'),
+        sunrise: getTime(data.current.sunrise * 1000),
+        sunset: getTime(data.current.sunset * 1000),
         humidity: data.current.humidity,
         windSpeed: Math.round(data.current.wind_speed),
         feelsLike: Math.round(data.current.feels_like),
@@ -76,12 +76,10 @@ export const Creators = {
     };
   },
   setHourlyData: ({ data }) => {
-    const todayEndMilliseconds = +new Date(moment({ hour: 23, minute: 59, seconds: 59 }).format());
-    const hourlyWeather = data.hourly.filter((item) => ((item.dt * 1000) < todayEndMilliseconds));
-
+    const hourlyWeather = data.hourly.filter((item, i) => (i < 8));
     const hourlyData = hourlyWeather.map((item) => ({
       dt: item.dt,
-      hour: moment(item.dt * 1000).format('HH'),
+      hour: getHour(item.dt * 1000),
       icon: item.weather[0] && item.weather[0].icon,
       temp: Math.round(item.temp),
     }));
@@ -101,7 +99,7 @@ export const Creators = {
       payload: {
         dailyData: data.daily.map((item) => ({
           dt: item.dt,
-          dayName: moment(item.dt * 1000).format('dddd'),
+          dayName: getWeekday(item.dt * 1000),
           icon: item.weather[0] && item.weather[0].icon,
           tempMin: Math.round(item.temp.min),
           tempMax: Math.round(item.temp.max),
