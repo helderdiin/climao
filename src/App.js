@@ -10,6 +10,7 @@ import { weather } from './services/api';
 
 import AfternoonImg from './assets/after_noon.png';
 import NightImg from './assets/night.png';
+import RefreshIcon from './assets/refresh.png';
 
 const CurrentWeather = React.lazy(() => import('./components/CurrentWeather'));
 const HourlyWeather = React.lazy(() => import('./components/HourlyWeather'));
@@ -19,17 +20,23 @@ const WeatherDetails = React.lazy(() => import('./components/WeatherDetails'));
 
 function App() {
   const dispatch = useDispatch();
+  const [coords, setCoords] = useState({});
   const [backgroundImage, setBackgroundImage] = useState(AfternoonImg);
 
+  const loadWeatherData = async (params) => {
+    const weatherData = await weather(params);
+
+    dispatch(WeatherActions.setTodayData(weatherData));
+    dispatch(WeatherActions.setHourlyData(weatherData));
+    dispatch(WeatherActions.setDailyData(weatherData));
+  };
+
   useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition(async ({ coords }) => {
-      const { latitude: lat, longitude: lon } = coords;
+    const watchId = navigator.geolocation.watchPosition(async ({ coords: coordinates }) => {
+      const { latitude: lat, longitude: lon } = coordinates;
 
-      const weatherData = await weather({ lat, lon });
-
-      dispatch(WeatherActions.setTodayData(weatherData));
-      dispatch(WeatherActions.setHourlyData(weatherData));
-      dispatch(WeatherActions.setDailyData(weatherData));
+      loadWeatherData({ lat, lon });
+      setCoords({ lat, lon });
 
       navigator.geolocation.clearWatch(watchId);
     });
@@ -49,6 +56,10 @@ function App() {
 
   return (
     <div id="app" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <button className="refresh-icon" onClick={() => loadWeatherData(coords)} type="button" tabIndex={0}>
+        <img src={RefreshIcon} alt="Refresh icon" />
+      </button>
+
       <Suspense fallback={<div>Loading...</div>}>
         <CurrentWeather />
         <HourlyWeather />
