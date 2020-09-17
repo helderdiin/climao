@@ -6,7 +6,7 @@ import './global.css';
 
 import { Creators as WeatherActions } from './store/ducks/weather';
 
-import { weather, forecast } from './services/api';
+import { weather } from './services/api';
 
 import AfternoonImg from './assets/after_noon.png';
 import NightImg from './assets/night.png';
@@ -26,11 +26,10 @@ function App() {
       const { latitude: lat, longitude: lon } = coords;
 
       const weatherData = await weather({ lat, lon });
-      dispatch(WeatherActions.setTodayData(weatherData));
 
-      const forecastData = await forecast({ lat, lon });
-      dispatch(WeatherActions.setHourlyData(forecastData));
-      dispatch(WeatherActions.setDailyData(forecastData));
+      dispatch(WeatherActions.setTodayData(weatherData));
+      dispatch(WeatherActions.setHourlyData(weatherData));
+      dispatch(WeatherActions.setDailyData(weatherData));
 
       navigator.geolocation.clearWatch(watchId);
     });

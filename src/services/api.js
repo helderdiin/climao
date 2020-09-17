@@ -16,9 +16,15 @@ const getParams = (params) => {
   return toQueryString({ ...defaultParams, ...params });
 };
 
-export const weather = (params) => api.get(`weather?${getParams(params)}`);
+export const weather = async (params) => {
+  const weatherData = await api.get(`onecall?${getParams(params)}`);
+  const { data: { name: cityName } } = await api.get(`weather?${getParams(params)}`);
 
-export const forecast = (params) => api.get(`forecast?${getParams(params)}`);
+  return {
+    ...weatherData,
+    cityName,
+  };
+};
 
 export default axios.create({
   baseURL: process.env.REACT_APP_WEATHER_API_URL,
