@@ -15,6 +15,7 @@ const MainWeather = React.lazy(() => import('./components/MainWeather'));
 const HourlyWeather = React.lazy(() => import('./components/HourlyWeather'));
 const DailyWeather = React.lazy(() => import('./components/DailyWeather'));
 const TodayDescription = React.lazy(() => import('./components/TodayDescription'));
+const WeatherDetails = React.lazy(() => import('./components/WeatherDetails'));
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
         <HourlyWeather />
         <DailyWeather />
         <TodayDescription />
+        <WeatherDetails />
       </Suspense>
     </div>
   );
