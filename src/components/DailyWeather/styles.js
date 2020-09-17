@@ -28,3 +28,8 @@ export const DayName = styled.div`
     text-transform: uppercase;
   }
 `;
+
+export const Empty = styled.div`
+  text-align: center;
+  width: 100%;
+`;

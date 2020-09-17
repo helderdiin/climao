@@ -28,7 +28,7 @@ function HourlyWeather() {
             </Item>
           ))
         ) : (
-          <Empty>Sem informações de clima por hora</Empty>
+          <Empty>Sem informações de clima hora a hora</Empty>
         )}
       </Container>
     </>
