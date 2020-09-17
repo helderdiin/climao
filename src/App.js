@@ -1,4 +1,6 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, {
+  useEffect, useState, Suspense, useCallback,
+} from 'react';
 import { useDispatch } from 'react-redux';
 
 import './global.css';
@@ -25,7 +27,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [backgroundImage, setBackgroundImage] = useState(AfternoonImg);
 
-  const loadWeatherData = async (params) => {
+  const loadWeatherData = useCallback(async (params) => {
     setLoading(true);
 
     const weatherData = await weather(params);
@@ -35,7 +37,7 @@ function App() {
     dispatch(WeatherActions.setDailyData(weatherData));
 
     setLoading(false);
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(async ({ coords: coordinates }) => {
@@ -48,7 +50,7 @@ function App() {
     });
 
     return () => navigator.geolocation.clearWatch(watchId);
-  }, [dispatch]);
+  }, [loadWeatherData]);
 
   useEffect(() => {
     const currentHour = getHour(Date.now());
