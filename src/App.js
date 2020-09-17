@@ -22,12 +22,12 @@ function App() {
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(async ({ coords }) => {
-      const { latitude, longitude } = coords;
+      const { latitude: lat, longitude: lon } = coords;
 
-      const weatherData = await weather.get(`&lat=${latitude}&lon=${longitude}`);
+      const weatherData = await weather({ lat, lon });
       dispatch(WeatherActions.setTodayData(weatherData));
 
-      const forecastData = await forecast.get(`&lat=${latitude}&lon=${longitude}`);
+      const forecastData = await forecast({ lat, lon });
       dispatch(WeatherActions.setHourlyData(forecastData));
       dispatch(WeatherActions.setDailyData(forecastData));
 

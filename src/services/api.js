@@ -1,12 +1,24 @@
 import axios from 'axios';
 
-export const weather = axios.create({
-  baseURL: `${process.env.REACT_APP_WEATHER_API_URL}weather?APPID=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric&lang=pt_br`,
+import { toQueryString } from './utils';
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_WEATHER_API_URL,
 });
 
-export const forecast = axios.create({
-  baseURL: `${process.env.REACT_APP_WEATHER_API_URL}forecast?APPID=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric&lang=pt_br`,
-});
+const getParams = (params) => {
+  const defaultParams = {
+    APPID: process.env.REACT_APP_WEATHER_API_KEY,
+    units: 'metric',
+    lang: 'pt_br',
+  };
+
+  return toQueryString({ ...defaultParams, ...params });
+};
+
+export const weather = (params) => api.get(`weather?${getParams(params)}`);
+
+export const forecast = (params) => api.get(`forecast?${getParams(params)}`);
 
 export default axios.create({
   baseURL: process.env.REACT_APP_WEATHER_API_URL,
