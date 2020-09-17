@@ -22,3 +22,9 @@ export const Item = styled.div`
     text-align: left;
   }
 `;
+
+export const DayName = styled.div`
+  :first-letter {
+    text-transform: uppercase;
+  }
+`;

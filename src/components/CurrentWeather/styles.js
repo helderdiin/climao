@@ -41,12 +41,16 @@ export const Details = styled.div`
 `;
 
 export const Day = styled.div`
-  span:first-child {
-    text-transform: capitalize;
-  }
+  display: flex;
 
-  span + span {
+  span {
     margin-left: 10px;
-    font-weight: 700
+    font-weight: 700;
+  }
+`;
+
+export const DayName = styled.div`
+  :first-letter {
+    text-transform: uppercase;
   }
 `;

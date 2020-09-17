@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import SectorDivider from '../../styles/SectorDivider';
 import MinMaxTemp from '../../styles/MinMaxTemp';
-import { Container, Item } from './styles';
+import { Container, Item, DayName } from './styles';
 
 function DailyWeather() {
   const dailyData = useSelector((state) => state.weather.dailyData);
@@ -14,7 +14,7 @@ function DailyWeather() {
       <Container>
         {dailyData.map((item) => (
           <Item key={item.dt}>
-            <div>{item.dayName}</div>
+            <DayName>{item.dayName}</DayName>
             <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
             <MinMaxTemp>
               <span>{item.tempMax}</span>

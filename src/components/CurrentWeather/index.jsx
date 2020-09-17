@@ -5,7 +5,7 @@ import MinMaxTemp from '../../styles/MinMaxTemp';
 import { getWeekday } from '../../services/dateTimeFormat';
 
 import {
-  Container, City, Temperature, Details, Day,
+  Container, City, Temperature, Details, Day, DayName,
 } from './styles';
 
 function CurrentWeather() {
@@ -26,7 +26,7 @@ function CurrentWeather() {
       </Temperature>
       <Details>
         <Day>
-          <span>{getWeekday(Date.now())}</span>
+          <DayName>{getWeekday(Date.now())}</DayName>
           <span>HOJE</span>
         </Day>
         <MinMaxTemp>
