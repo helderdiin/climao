@@ -14,7 +14,7 @@ function DailyWeather() {
     <>
       <SectorDivider />
       <Container>
-        {dailyData.lenght ? (
+        {dailyData.length ? (
           dailyData.map((item) => (
             <Item key={item.dt}>
               <DayName>{item.dayName}</DayName>
