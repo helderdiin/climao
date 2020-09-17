@@ -5,7 +5,7 @@ import './global.css';
 
 import { Creators as WeatherActions } from './store/ducks/weather';
 
-import { weather } from './services/api';
+import { weather, forecast } from './services/api';
 import MainWeather from './components/MainWeather';
 import HourlyWeather from './components/HourlyWeather';
 import DailyWeather from './components/DailyWeather';
@@ -18,8 +18,11 @@ function App() {
     const watchId = navigator.geolocation.watchPosition(async ({ coords }) => {
       const { latitude, longitude } = coords;
 
-      const { data } = await weather.get(`&lat=${latitude}&lon=${longitude}`);
-      dispatch(WeatherActions.loadTodayData(data));
+      const weatherData = await weather.get(`&lat=${latitude}&lon=${longitude}`);
+      dispatch(WeatherActions.setTodayData(weatherData));
+
+      const hourlyData = await forecast.get(`&lat=${latitude}&lon=${longitude}`);
+      dispatch(WeatherActions.setHourlyData(hourlyData));
 
       navigator.geolocation.clearWatch(watchId);
     });

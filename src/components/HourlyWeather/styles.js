@@ -20,3 +20,8 @@ export const Item = styled.div`
     }
   }
 `;
+
+export const Empty = styled.div`
+  text-align: center;
+  width: 100%;
+`;

@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import SectorDivider from '../../styles/SectorDivider';
-import { Container, Item } from './styles';
+import { Container, Item, Empty } from './styles';
 
 function HourlyWeather() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setItems(['20', '21', '22']);
-  }, []);
+  const hourlyData = useSelector((state) => state.weather.hourlyData);
 
   return (
     <>
       <SectorDivider />
       <Container>
-        {items.map(item => (
-          <Item>
-            <div>{item}</div>
-            <img src="http://openweathermap.org/img/wn/10d.png" alt="Weather icon" />
-            <div>29</div>
-          </Item>
-        ))}
+        {hourlyData.length ? (
+          hourlyData.map((item) => (
+            <Item>
+              <div>{item.hour}</div>
+              <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
+              <div>{item.temp}</div>
+            </Item>
+          ))
+        ) : (
+          <Empty>Sem informações de clima por hora</Empty>
+        )}
       </Container>
     </>
   );

@@ -1,5 +1,8 @@
+import moment from 'moment';
+
 export const Types = {
-  LOAD: 'weather/LOAD',
+  SET_TODAY_DATA: 'weather/SET_TODAY_DATA',
+  SET_HOURLY_DATA: 'weather/SET_HOURLY_DATA',
 };
 
 const INITIAL_STATE = {
@@ -8,19 +11,28 @@ const INITIAL_STATE = {
   temp: 0,
   tempMin: 0,
   tempMax: 0,
+  hourlyData: [],
 };
 
 export default function weather(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.LOAD:
-      return action.payload.weatherData;
+    case Types.SET_TODAY_DATA:
+      return {
+        ...state,
+        ...action.payload.weatherData,
+      };
+    case Types.SET_HOURLY_DATA:
+      return {
+        ...state,
+        ...action.payload.hourlyData,
+      };
     default:
       return state;
   }
 }
 
 export const Creators = {
-  loadTodayData: (data) => {
+  setTodayData: ({ data }) => {
     const weatherData = {
       cityName: data.name,
       cityStatus: data.weather[0] && data.weather[0].description,
@@ -30,9 +42,27 @@ export const Creators = {
     };
 
     return {
-      type: Types.LOAD,
+      type: Types.SET_TODAY_DATA,
       payload: {
         weatherData,
+      },
+    };
+  },
+  setHourlyData: ({ data }) => {
+    const todayStartMilliseconds = +new Date(moment(0, 'HH').format());
+    const todayEndMilliseconds = +new Date(moment({ hour: 23, minute: 59, seconds: 59 }).format());
+
+    const hourlyWeather = data.list.filter((item) => ((item.dt * 1000) > todayStartMilliseconds && (item.dt * 1000) < todayEndMilliseconds));
+    const hourlyData = hourlyWeather.map((item) => ({
+      hour: moment(item.dt_txt).format('HH'),
+      icon: item.weather[0] && item.weather[0].icon,
+      temp: parseInt(item.main.temp, 10),
+    }));
+
+    return {
+      type: Types.SET_HOURLY_DATA,
+      payload: {
+        hourlyData,
       },
     };
   },
