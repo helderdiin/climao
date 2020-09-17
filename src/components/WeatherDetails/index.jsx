@@ -23,7 +23,7 @@ function WeatherDetails() {
     sunrise: '',
     sunset: '',
     humidity: '%',
-    windSpeed: 'km/h',
+    windSpeed: 'm/s',
     feelsLike: '°',
     pressure: 'hPa',
     visibility: 'km',
