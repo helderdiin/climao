@@ -11,8 +11,8 @@ function WeatherDetails() {
     sunrise: 'Nascer do sol',
     sunset: 'Pôr do sol',
     humidity: 'Umidade',
-    wind_speed: 'Vento',
-    feels_like: 'Sensação térmica',
+    windSpeed: 'Vento',
+    feelsLike: 'Sensação térmica',
     precipitation: 'Precipitação',
     pressure: 'Pressão',
     visibility: 'Visibilidade',
@@ -23,8 +23,8 @@ function WeatherDetails() {
     sunrise: '',
     sunset: '',
     humidity: '%',
-    wind_speed: 'km/h',
-    feels_like: '°',
+    windSpeed: 'km/h',
+    feelsLike: '°',
     pressure: 'hPa',
     visibility: 'km',
     uvi: '',
@@ -35,7 +35,7 @@ function WeatherDetails() {
       <SectorDivider />
       <Container>
         {Object.keys(details).map((item) => (
-          <Item>
+          <Item key={item}>
             <span>{DETAILS_ITEM_LABEL[item]}</span>
             <span>
               {details[item]}

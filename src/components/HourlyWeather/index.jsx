@@ -13,7 +13,7 @@ function HourlyWeather() {
       <Container>
         {hourlyData.length ? (
           hourlyData.map((item) => (
-            <Item>
+            <Item key={item.dt}>
               <div>{item.hour}</div>
               <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
               <div>{item.temp}</div>

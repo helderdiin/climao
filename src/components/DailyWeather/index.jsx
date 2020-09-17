@@ -13,7 +13,7 @@ function DailyWeather() {
       <SectorDivider />
       <Container>
         {dailyData.map((item) => (
-          <Item>
+          <Item key={item.dt}>
             <div>{item.dayName}</div>
             <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
             <MinMaxTemp>
