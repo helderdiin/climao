@@ -20,7 +20,7 @@ export default function weather(state = INITIAL_STATE, action) {
 }
 
 export const Creators = {
-  loadData: (data) => {
+  loadTodayData: (data) => {
     const weatherData = {
       cityName: data.name,
       cityStatus: data.weather[0] && data.weather[0].description,

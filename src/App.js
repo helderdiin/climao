@@ -19,12 +19,13 @@ function App() {
       const { latitude, longitude } = coords;
 
       const { data } = await weather.get(`&lat=${latitude}&lon=${longitude}`);
-      dispatch(WeatherActions.loadData(data));
+      dispatch(WeatherActions.loadTodayData(data));
+
       navigator.geolocation.clearWatch(watchId);
     });
 
     return () => navigator.geolocation.clearWatch(watchId);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="app">

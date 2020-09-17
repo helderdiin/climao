@@ -18,6 +18,10 @@ export const City = styled.div`
   span:first-child {
     font-size: 32px;
   }
+
+  span + span {
+    text-transform: capitalize;
+  }
 `;
 
 export const Temperature = styled.div`
@@ -37,6 +41,10 @@ export const Details = styled.div`
 `;
 
 export const Day = styled.div`
+  span:first-child {
+    text-transform: capitalize;
+  }
+
   span + span {
     margin-left: 10px;
     font-weight: 700

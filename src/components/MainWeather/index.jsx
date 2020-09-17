@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import MinMaxTemp from '../../styles/MinMaxTemp';
-import { Container, City, Temperature, Details, Day } from './styles';
+import {
+  Container, City, Temperature, Details, Day,
+} from './styles';
 
 function MainWeather() {
   const cityName = useSelector((state) => state.weather.cityName);
@@ -22,7 +25,7 @@ function MainWeather() {
       </Temperature>
       <Details>
         <Day>
-          <span>Quarta-feira</span>
+          <span>{moment().format('dddd')}</span>
           <span>HOJE</span>
         </Day>
         <MinMaxTemp>
