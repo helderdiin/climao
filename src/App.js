@@ -11,7 +11,7 @@ import { weather } from './services/api';
 import AfternoonImg from './assets/after_noon.png';
 import NightImg from './assets/night.png';
 
-const MainWeather = React.lazy(() => import('./components/MainWeather'));
+const CurrentWeather = React.lazy(() => import('./components/CurrentWeather'));
 const HourlyWeather = React.lazy(() => import('./components/HourlyWeather'));
 const DailyWeather = React.lazy(() => import('./components/DailyWeather'));
 const TodayDescription = React.lazy(() => import('./components/TodayDescription'));
@@ -50,7 +50,7 @@ function App() {
   return (
     <div id="app" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <Suspense fallback={<div>Loading...</div>}>
-        <MainWeather />
+        <CurrentWeather />
         <HourlyWeather />
         <DailyWeather />
         <TodayDescription />

@@ -7,7 +7,7 @@ import {
   Container, City, Temperature, Details, Day,
 } from './styles';
 
-function MainWeather() {
+function CurrentWeather() {
   const cityName = useSelector((state) => state.weather.cityName);
   const cityStatus = useSelector((state) => state.weather.cityStatus);
   const temp = useSelector((state) => state.weather.temp);
@@ -37,4 +37,4 @@ function MainWeather() {
   );
 }
 
-export default MainWeather;
+export default CurrentWeather;
