@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import SectorDivider from '../../styles/SectorDivider';
 import MinMaxTemp from '../../styles/MinMaxTemp';
 import { Container, Item } from './styles';
 
 function DailyWeather() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setItems(['Quinta-feira', 'Sexta-feira', 'Sábado']);
-  }, []);
+  const dailyData = useSelector((state) => state.weather.dailyData);
 
   return (
     <>
       <SectorDivider />
       <Container>
-        {items.map(item => (
+        {dailyData.map((item) => (
           <Item>
-            <div>{item}</div>
-            <img src="http://openweathermap.org/img/wn/10d.png" alt="Weather icon" />
+            <div>{item.dayName}</div>
+            <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
             <MinMaxTemp>
-              <span>33</span>
-              <span>18</span>
+              <span>{item.tempMax}</span>
+              <span>{item.tempMin}</span>
             </MinMaxTemp>
           </Item>
         ))}

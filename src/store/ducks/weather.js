@@ -3,6 +3,7 @@ import moment from 'moment';
 export const Types = {
   SET_TODAY_DATA: 'weather/SET_TODAY_DATA',
   SET_HOURLY_DATA: 'weather/SET_HOURLY_DATA',
+  SET_DAILY_DATA: 'weather/SET_DAILY_DATA',
 };
 
 const INITIAL_STATE = {
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   tempMin: 0,
   tempMax: 0,
   hourlyData: [],
+  dailyData: [],
 };
 
 export default function weather(state = INITIAL_STATE, action) {
@@ -24,7 +26,12 @@ export default function weather(state = INITIAL_STATE, action) {
     case Types.SET_HOURLY_DATA:
       return {
         ...state,
-        ...action.payload.hourlyData,
+        hourlyData: action.payload.hourlyData,
+      };
+    case Types.SET_DAILY_DATA:
+      return {
+        ...state,
+        dailyData: action.payload.dailyData,
       };
     default:
       return state;
@@ -63,6 +70,28 @@ export const Creators = {
       type: Types.SET_HOURLY_DATA,
       payload: {
         hourlyData,
+      },
+    };
+  },
+  setDailyData: ({ data }) => {
+    const todayEndMilliseconds = +new Date(moment({ hour: 23, minute: 59, seconds: 59 }).format());
+    const todayDayNumber = +moment().format('DD');
+    const dailyWeather = data.list.filter((item) => ((item.dt * 1000) > todayEndMilliseconds));
+    const dailyData = [];
+
+    for (let i = 1; i < 6; i += 1) {
+      dailyData.push(dailyWeather.find((item) => +moment(item.dt_txt).format('DD') === todayDayNumber + i));
+    }
+
+    return {
+      type: Types.SET_DAILY_DATA,
+      payload: {
+        dailyData: dailyData.map((item) => ({
+          dayName: moment(item.dt_txt).format('dddd'),
+          icon: item.weather[0] && item.weather[0].icon,
+          tempMin: parseInt(item.main.temp_min, 10),
+          tempMax: parseInt(item.main.temp_max, 10),
+        })),
       },
     };
   },

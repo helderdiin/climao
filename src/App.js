@@ -21,8 +21,9 @@ function App() {
       const weatherData = await weather.get(`&lat=${latitude}&lon=${longitude}`);
       dispatch(WeatherActions.setTodayData(weatherData));
 
-      const hourlyData = await forecast.get(`&lat=${latitude}&lon=${longitude}`);
-      dispatch(WeatherActions.setHourlyData(hourlyData));
+      const forecastData = await forecast.get(`&lat=${latitude}&lon=${longitude}`);
+      dispatch(WeatherActions.setHourlyData(forecastData));
+      dispatch(WeatherActions.setDailyData(forecastData));
 
       navigator.geolocation.clearWatch(watchId);
     });
