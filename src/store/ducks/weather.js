@@ -76,7 +76,7 @@ export const Creators = {
     };
   },
   setHourlyData: ({ data }) => {
-    const hourlyWeather = data.hourly.filter((item, i) => (i < 8));
+    const hourlyWeather = data.hourly.filter((item, i) => (i < 6));
     const hourlyData = hourlyWeather.map((item) => ({
       dt: item.dt,
       hour: getHour(item.dt * 1000),
