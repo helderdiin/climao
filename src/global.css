@@ -9,7 +9,6 @@
 
 body {
   font: 400 16px Lato, sans-serif;
-  background: #4bd6d6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -26,4 +25,5 @@ body,
 #app {
   width: 100%;
   color: #fff !important;
+  background-size: cover;
 }
