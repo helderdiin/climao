@@ -14,7 +14,7 @@ body {
 
 #root {
   display: flex;
-  width: 415px;
+  width: 100%;
   position: relative;
   margin: 0 auto;
 }
@@ -64,6 +64,12 @@ body {
   animation-duration: 3000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+@media screen and (min-width: 850px) {
+  #root {
+    width: 600px;
+  }
 }
 
 @keyframes spin {

@@ -40,16 +40,12 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition(async ({ coords: coordinates }) => {
+    navigator.geolocation.getCurrentPosition(async ({ coords: coordinates }) => {
       const { latitude: lat, longitude: lon } = coordinates;
 
       await loadWeatherData({ lat, lon });
       setCoords({ lat, lon });
-
-      navigator.geolocation.clearWatch(watchId);
     });
-
-    return () => navigator.geolocation.clearWatch(watchId);
   }, [loadWeatherData]);
 
   useEffect(() => {
@@ -68,7 +64,7 @@ function App() {
         <div className="loading"><img src={LoadingIcon} alt="Loading icon" /></div>
       ) : (
         <>
-          <button className="refresh-icon" onClick={() => loadWeatherData(coords)} type="button" tabIndex={0}>
+          <button className="refresh-icon" onClick={() => loadWeatherData(coords)} type="button">
             <img src={RefreshIcon} alt="Refresh icon" />
           </button>
 
