@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -7,13 +7,14 @@ import './global.css';
 import { Creators as WeatherActions } from './store/ducks/weather';
 
 import { weather, forecast } from './services/api';
-import MainWeather from './components/MainWeather';
-import HourlyWeather from './components/HourlyWeather';
-import DailyWeather from './components/DailyWeather';
-import TodayDescription from './components/TodayDescription';
 
 import AfternoonImg from './assets/after_noon.png';
 import NightImg from './assets/night.png';
+
+const MainWeather = React.lazy(() => import('./components/MainWeather'));
+const HourlyWeather = React.lazy(() => import('./components/HourlyWeather'));
+const DailyWeather = React.lazy(() => import('./components/DailyWeather'));
+const TodayDescription = React.lazy(() => import('./components/TodayDescription'));
 
 function App() {
   const dispatch = useDispatch();
@@ -48,10 +49,12 @@ function App() {
 
   return (
     <div id="app" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <MainWeather />
-      <HourlyWeather />
-      <DailyWeather />
-      <TodayDescription />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainWeather />
+        <HourlyWeather />
+        <DailyWeather />
+        <TodayDescription />
+      </Suspense>
     </div>
   );
 }
