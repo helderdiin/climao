@@ -18,10 +18,10 @@ function CurrentWeather() {
   return (
     <Container>
       <City>
-        <span>{cityName}</span>
-        <span>{cityStatus}</span>
+        <span data-testid="city-name">{cityName}</span>
+        <span data-testid="city-status">{cityStatus}</span>
       </City>
-      <Temperature>
+      <Temperature data-testid="current-temp">
         {temp}
       </Temperature>
       <Details>
@@ -30,8 +30,8 @@ function CurrentWeather() {
           <span>HOJE</span>
         </Day>
         <MinMaxTemp>
-          <span>{tempMax}</span>
-          <span>{tempMin}</span>
+          <span data-testid="temp-max">{tempMax}</span>
+          <span data-testid="temp-min">{tempMin}</span>
         </MinMaxTemp>
       </Details>
     </Container>
