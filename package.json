@@ -61,5 +61,8 @@
       "yarn lint:fix",
       "git add"
     ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": ["/node_modules/", "/src/store/**/*.js", "/src/App.js", "/src/index.js"]
   }
 }

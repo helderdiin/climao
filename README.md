@@ -23,7 +23,7 @@ yarn install
 yarn start
 ```
 
-## Playlists de desenvolvimento :musical_note:
+## :musical_note: Playlists de desenvolvimento
 
 1. [Easy](https://open.spotify.com/playlist/5iSqs9BD6ivQEfA4mU839z?si=iICXv-VZT56HntcPHubHfQ)
 2. [Liu @ HOPI HARI (Live Set)](https://youtu.be/a4g96HW1VuA)
