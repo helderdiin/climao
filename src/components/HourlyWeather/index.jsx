@@ -23,7 +23,7 @@ function HourlyWeather() {
               ) : (
                 <TodayText>Agora</TodayText>
               )}
-              <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
+              <img src={`https://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
               <div>{item.temp}</div>
             </Item>
           ))
