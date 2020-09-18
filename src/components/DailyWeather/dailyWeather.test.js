@@ -25,7 +25,7 @@ test('Primeiro dia deve ter o ícone correto', async () => {
 
   const firstChild = getByTestId('daily-items-container').querySelectorAll('div')[0];
 
-  expect(firstChild.childNodes[1].getAttribute('src')).toBe('http://openweathermap.org/img/wn/01d.png');
+  expect(firstChild.childNodes[1].getAttribute('src')).toBe('https://openweathermap.org/img/wn/01d.png');
 });
 
 test('Temperatura max e min devem ser \'36\' e \'29\' respectivamente', async () => {

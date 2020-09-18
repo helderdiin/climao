@@ -18,7 +18,7 @@ function DailyWeather() {
           dailyData.map((item) => (
             <Item key={item.dt}>
               <DayName>{item.dayName}</DayName>
-              <img src={`http://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
+              <img src={`https://openweathermap.org/img/wn/${item.icon}.png`} alt="Weather icon" />
               <MinMaxTemp>
                 <span>{item.tempMax}</span>
                 <span>{item.tempMin}</span>

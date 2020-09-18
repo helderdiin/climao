@@ -25,7 +25,7 @@ test('Primeiro dia deve ter o ícone correto', async () => {
 
   const firstChild = getByTestId('hourly-items-container').querySelectorAll('div')[0];
 
-  expect(firstChild.childNodes[1].getAttribute('src')).toBe('http://openweathermap.org/img/wn/04n.png');
+  expect(firstChild.childNodes[1].getAttribute('src')).toBe('https://openweathermap.org/img/wn/04n.png');
 });
 
 test('Temperatura deve ser \'33\'', async () => {
