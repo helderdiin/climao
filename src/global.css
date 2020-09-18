@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  text-decoration: none;
+  outline: none;
+}
+
+body {
+  font: 400 16px Lato, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+#app {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  color: #fff !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+}
+
+.refresh-icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  border: none;
+}
+
+.refresh-icon img {
+  width: 20px;
+  margin-top: 2px;
+  margin-left: -1px;
+}
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading img {
+  width: 86px;
+
+  animation-name: spin;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@media screen and (min-width: 850px) {
+  #root {
+    width: 600px;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+}
