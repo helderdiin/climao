@@ -12,7 +12,7 @@ function TodayDescription() {
   return (
     <>
       <SectorDivider />
-      <Container>
+      <Container data-testid="today-description">
         Hoje:
         {' '}
         {cityStatus}

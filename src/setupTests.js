@@ -5,6 +5,8 @@ import { render as rtlRender, cleanup } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 
+import App from './App';
+
 const mockStore = configureMockStore();
 
 const STORE_MOCK = mockStore({
@@ -79,7 +81,11 @@ function render(
 afterEach(cleanup);
 
 test('Renderiza aplicação sem erros', () => {
-  const component = render();
+  global.navigator.geolocation = {
+    getCurrentPosition: jest.fn(),
+  };
+
+  const component = render(<App />);
   expect(component).toBeDefined();
 });
 

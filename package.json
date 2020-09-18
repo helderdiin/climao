@@ -63,6 +63,6 @@
     ]
   },
   "jest": {
-    "coveragePathIgnorePatterns": ["node_modules/", "src/store/", "src/App.js", "src/index.js"]
+    "coveragePathIgnorePatterns": ["node_modules/", "src/store/", "src/index.js", "src/services"]
   }
 }
