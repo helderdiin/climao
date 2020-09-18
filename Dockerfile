@@ -6,7 +6,7 @@ RUN apk update \
   && apk add curl bash binutils gettext yarn
 
 RUN touch .env
-RUN echo "REACT_APP_WEATHER_API_URL=http://api.openweathermap.org/data/2.5/" >> .env
+RUN echo "REACT_APP_WEATHER_API_URL=https://api.openweathermap.org/data/2.5/" >> .env
 RUN echo "REACT_APP_WEATHER_API_KEY=${WEATHER_API_KEY}" >> .env
 
 RUN rm -rf node_modules && yarn install
