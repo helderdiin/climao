@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2020": true
+    "es2020": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -22,5 +23,14 @@
       "extensions": [".js", ".jsx"]
     }],
     "max-len": [1, 150]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.test.js"],
+      "rules": {
+        "max-len": "off",
+        "react/prop-types": "off"
+      }
+    }
+  ]
 }

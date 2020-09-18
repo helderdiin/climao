@@ -7,7 +7,6 @@ import './global.css';
 
 import { Creators as WeatherActions } from './store/ducks/weather';
 import { getHour } from './services/dateTimeFormat';
-
 import { weather } from './services/api';
 
 import AfternoonImg from './assets/after_noon.png';
