@@ -28,8 +28,4 @@ export const Empty = styled.div`
 
 export const TodayText = styled.div`
   font-weight: 700;
-
-  ::after {
-    content: "Agora";
-  }
 `;
