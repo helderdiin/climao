@@ -33,7 +33,7 @@ function WeatherDetails() {
   return (
     <>
       <SectorDivider />
-      <Container>
+      <Container data-testid="details-items-container">
         {Object.keys(details).map((item) => (
           <Item key={item}>
             <span>{DETAILS_ITEM_LABEL[item]}</span>
